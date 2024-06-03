@@ -17,3 +17,12 @@ elem = browser.find_element(By.XPATH, "//textarea[@aria-label='Pesquisar']")
 
 elem.send_keys(term)
 elem.send_keys(Keys.ENTER)
+
+# 5 - Retornando a Qtd de Registros
+time.sleep(2)
+tools = browser.find_element(By.XPATH, "//div[@role='button' and text()='Ferramentas']")
+tools.click()
+results = browser.find_element(By.ID, "result-stats").text
+print(f"Foram encontrados {results}")
+
+browser.quit()
