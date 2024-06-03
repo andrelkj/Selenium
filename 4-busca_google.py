@@ -21,6 +21,7 @@ elem.send_keys(Keys.ENTER)
 time.sleep(2)
 tools = browser.find_element(By.XPATH, "//div[@role='button' and text()='Ferramentas']")
 tools.click()
+time.sleep(2)
 results = browser.find_element(By.ID, "result-stats").text
 print(f"Foram encontrados {results}")
 
@@ -31,4 +32,24 @@ qtd_results = int(
 tot_pages = qtd_results / 10
 print(f"Número de páginas {int(tot_pages)}")
 
-browser.quit()
+# Page navigation does not apply to firefox once it loads the results in one page when scrolling down
+# # 7 - Navegando entre páginas
+# time.sleep(2)
+# url_page = browser.find_element(By.XPATH, '//a[@aria-label="Page 2"]').get_attribute(
+#     "href"
+# )
+
+# current_page = 0
+# start = 10
+# list_results = []
+
+# while current_page <= 5:
+#     if not current_page == 0:
+#         url_page = url_page.replace(
+#             "start=%s" % start,
+#             "start=%s" % (start + 10),
+#         )
+#         start += 10
+#     current_page += 1
+#     browser.get(url_page)
+# browser.quit()
