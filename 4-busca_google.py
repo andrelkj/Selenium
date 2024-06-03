@@ -3,11 +3,15 @@ from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.by import By
 import time
 
+# Especifique o caminho para o ChromeDriver
+chrome_driver_path = '/usr/local/bin/chromedriver'
+
+
 # 1 - Termo de pesquisa
 term = input("Digite o que deseja pesquisar:\n")
 
 # 2 - Iniciando o Driver
-browser = webdriver.Firefox()
+browser = webdriver.Chrome()
 browser.get("https://www.google.com.br/")
 
 # 3 - Encontrando o elemento
@@ -32,9 +36,9 @@ qtd_results = int(
 tot_pages = qtd_results / 10
 print(f"Número de páginas {int(tot_pages)}")
 
-# Page navigation does not apply to firefox once it loads the results in one page when scrolling down
+# # Page navigation does not apply to firefox once it loads the results in one page when scrolling down
 # # 7 - Navegando entre páginas
-# time.sleep(2)
+# time.sleep(5)
 # url_page = browser.find_element(By.XPATH, '//a[@aria-label="Page 2"]').get_attribute(
 #     "href"
 # )
@@ -52,4 +56,23 @@ print(f"Número de páginas {int(tot_pages)}")
 #         start += 10
 #     current_page += 1
 #     browser.get(url_page)
-# browser.quit()
+
+# # 8 - Recuperando informações
+#     divs = browser.find_elements(
+#         By.XPATH,
+#         '//div[@class="yuRUbf"]'
+#     )
+#     for div in divs:
+#         name = div.find_element(By.TAG_NAME, 'h3')
+#         link = div.find_element(By.TAG_NAME, 'a')
+#         result = "%s,%s" %(name.text, link.get_attribute('href'))
+#         print(result)
+#         list_results.append(result)
+
+# 9 - Salvando em arquivo txt
+# with open('results_term.txt', 'w', encoding='utf-8') as file:
+#     for result in list_results:
+#         file.write("%s\n" %result)
+
+# print(f'Foram encontrados {len(list_results)} resultados na pesquisa')
+browser.quit()
