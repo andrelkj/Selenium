@@ -14,7 +14,6 @@ browser.get("https://www.google.com.br/")
 elem = browser.find_element(By.XPATH, "//textarea[@aria-label='Pesquisar']")
 
 # 4 - Enviando termo para pesquisa
-
 elem.send_keys(term)
 elem.send_keys(Keys.ENTER)
 
@@ -24,5 +23,12 @@ tools = browser.find_element(By.XPATH, "//div[@role='button' and text()='Ferrame
 tools.click()
 results = browser.find_element(By.ID, "result-stats").text
 print(f"Foram encontrados {results}")
+
+# 6 - Retornando o Número de Páginas
+qtd_results = int(
+    results.split("Aproximadamente ")[1].split(" resultados")[0].replace(".", "")
+)
+tot_pages = qtd_results / 10
+print(f"Número de páginas {int(tot_pages)}")
 
 browser.quit()
